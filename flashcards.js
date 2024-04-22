@@ -7,7 +7,8 @@ const fs = require('node:fs'),
     WORDS_FILE_NAME = 'words.csv',
     wordList = prepareWordList(WORDS_FILE_NAME),
     WORD_COUNT = wordList.length,
-    LANGUAGE_COUNT = wordList[0].length;
+    LANGUAGE_COUNT = wordList[0].length,
+    TOTAL_WORDS_TO_TRY = 10;
 
 
 function prepareWordList (fileName) {
@@ -24,7 +25,7 @@ function getTargetLanguageIndex (sourceRandomIndex) {
 
 
     while (targetLanguageIndex == sourceRandomIndex) {
-        console.log('trying target language index again..');
+        //console.log('trying target language index again..');
 
         targetLanguageIndex = Math.floor((Math.random() * 10) % LANGUAGE_COUNT);
     }
@@ -32,7 +33,7 @@ function getTargetLanguageIndex (sourceRandomIndex) {
     return targetLanguageIndex;
 }
 
-function quizWord () {
+function quizWord (callback) {
     const wordIndex = Math.floor((Math.random() * 100) % WORD_COUNT) + 1,
         languageIndex = Math.floor((Math.random() * 10) % LANGUAGE_COUNT),
         randomWordEntry = wordList[wordIndex],
@@ -42,8 +43,8 @@ function quizWord () {
         targetWord = wordList[wordIndex][targetIndex];
 
 
-    console.log('word index: ' + wordIndex);
-    console.log('language index: ' + languageIndex);
+    //console.log('word index: ' + wordIndex);
+    //console.log('language index: ' + languageIndex);
 
     //console.log(wordList[wordIndex]);
 
@@ -54,7 +55,8 @@ function quizWord () {
             console.log('Incorrect.');
         }
 
-        return rl.close();
+        //rl.close();
+        return callback();
     });
 }
 
@@ -62,4 +64,16 @@ function quizWord () {
 //console.log('word count: ' + WORD_COUNT);
 //console.log('language count: ' + LANGUAGE_COUNT);
 
-quizWord();
+
+function main (callbackCount) {
+    if (callbackCount < TOTAL_WORDS_TO_TRY) {
+        quizWord(() => {
+            main(callbackCount + 1);
+        });
+    } else {
+        rl.close();
+    }
+}
+
+
+main(0);
