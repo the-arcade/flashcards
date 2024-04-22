@@ -51,12 +51,11 @@ function quizWord (callback) {
     rl.question(`What is the ${targetLanguage} word for: ${randomWord}?\n>`, (userEntry) => {
         if (userEntry == targetWord) {
             console.log('Correct.');
+            return callback(null, 1);
         } else {
             console.log('Incorrect.');
+            return callback(null, 0);
         }
-
-        //rl.close();
-        return callback();
     });
 }
 
@@ -65,15 +64,21 @@ function quizWord (callback) {
 //console.log('language count: ' + LANGUAGE_COUNT);
 
 
-function main (callbackCount) {
+function main (callbackCount, score) {
     if (callbackCount < TOTAL_WORDS_TO_TRY) {
-        quizWord(() => {
-            main(callbackCount + 1);
+        quizWord((err, quizPoint) => {
+            if (err) {
+                console.error('error processing quiz question:');
+                return console.error(err);
+            }
+
+            main(callbackCount + 1, score + quizPoint);
         });
     } else {
+        console.log(`Final score: ${score} / ${TOTAL_WORDS_TO_TRY}`);
         rl.close();
     }
 }
 
 
-main(0);
+main(0, 0);
