@@ -6,8 +6,9 @@ const fs = require('node:fs'),
     }),
     WORDS_FILE_NAME = 'words.csv',
     wordList = prepareWordList(WORDS_FILE_NAME),
+    LANGUAGE_LIST = wordList.shift(),
     WORD_COUNT = wordList.length,
-    LANGUAGE_COUNT = wordList[0].length,
+    LANGUAGE_COUNT = LANGUAGE_LIST.length,
     TOTAL_WORDS_TO_TRY = 10;
 
 
@@ -34,12 +35,12 @@ function getTargetLanguageIndex (sourceRandomIndex) {
 }
 
 function quizWord (callback) {
-    const wordIndex = Math.floor((Math.random() * 100) % WORD_COUNT) + 1,
+    const wordIndex = Math.floor((Math.random() * 100) % WORD_COUNT),
         languageIndex = Math.floor((Math.random() * 10) % LANGUAGE_COUNT),
         randomWordEntry = wordList[wordIndex],
         randomWord = randomWordEntry[languageIndex],
         targetIndex = getTargetLanguageIndex(languageIndex),
-        targetLanguage = wordList[0][targetIndex],
+        targetLanguage = LANGUAGE_LIST[targetIndex],
         targetWord = wordList[wordIndex][targetIndex];
 
 
