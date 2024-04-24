@@ -22,20 +22,20 @@ function prepareWordList (fileName) {
 }
 
 function getTargetLanguageIndex (sourceRandomIndex) {
-    let targetLanguageIndex = Math.floor((Math.random() * 10) % LANGUAGE_COUNT);
+    let targetLanguageIndex = Math.floor(Math.random() * LANGUAGE_COUNT);
 
 
     while (targetLanguageIndex == sourceRandomIndex) {
         //console.log('trying target language index again..');
 
-        targetLanguageIndex = Math.floor((Math.random() * 10) % LANGUAGE_COUNT);
+        targetLanguageIndex = Math.floor(Math.random() * LANGUAGE_COUNT);
     }
 
     return targetLanguageIndex;
 }
 
 function quizWord (callback) {
-    const wordIndex = Math.floor((Math.random() * 100) % WORD_COUNT),
+    const wordIndex = Math.floor(Math.random() * WORD_COUNT),
         languageIndex = getTargetLanguageIndex(),
         randomWordEntry = wordList[wordIndex],
         randomWord = randomWordEntry[languageIndex],
