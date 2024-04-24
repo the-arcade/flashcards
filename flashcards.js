@@ -49,12 +49,12 @@ function quizWord (callback) {
 
     //console.log(wordList[wordIndex]);
 
-    rl.question(`What is the ${targetLanguage} word for: ${randomWord}?\n>`, (userEntry) => {
+    rl.question(`Was ist die ${targetLanguage} Wort für: ${randomWord}?\n>`, (userEntry) => {
         if (userEntry == targetWord) {
-            console.log('Correct.');
+            console.log('Richtig.');
             return callback(null, 1);
         } else {
-            console.log('Incorrect.');
+            console.log('Unrichtig.');
             return callback(null, 0);
         }
     });
