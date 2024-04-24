@@ -36,7 +36,7 @@ function getTargetLanguageIndex (sourceRandomIndex) {
 
 function quizWord (callback) {
     const wordIndex = Math.floor((Math.random() * 100) % WORD_COUNT),
-        languageIndex = Math.floor((Math.random() * 10) % LANGUAGE_COUNT),
+        languageIndex = getTargetLanguageIndex(),
         randomWordEntry = wordList[wordIndex],
         randomWord = randomWordEntry[languageIndex],
         targetIndex = getTargetLanguageIndex(languageIndex),
