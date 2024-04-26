@@ -1,60 +1,60 @@
-englisch,deutsche,serbisch
-alphabet,Alphabet,азбука
-car,Auto,ауто
-bicycle,Fahrrad,бицикл
-fire,Feuer,ватра
-pidgeon,Pidgin,голуб
-tree,Baum,дрво
-garbage,Müll,ђубре
-Europe,Europa,Европа
-wheat,Weizen,жито
-bell,Glocke,звоно
-needle,Nadel,игла
-Yugoslavia,Jugoslawien,Југославија
-tower,Turm,кула
-watermelon,Wassermelone,лубеница
-chilli pepper,Chili,љута паприка
-mouse,Maus,миш
-glasses,Brille,наочаре
-yum,lecker,њам
-mirror,Spiegel,огледало
-dog,Hund,пас
-barbecue,Grillgericht,роштиљ
-chair,Stuhl,столица
-horn,Horn,труба
-jar,Glas,ћуп
-question,Frage,упитник
-soccer,Fußball,фудбал
-bread,Brot,хлеб
-flower,Blume,цвет
-comb,Kamm,чешаљ
-sack,Sack,џак
-Serbian hat,Serbisch Hut,шајкача
-hat,Hut,шешир
-number,Nummer,број
-zero,null,нула
-one,eins,један
-two,zwei,два
-three,drei,три
-four,vier,четири
-five,fünf,пет
-six,sechs,шест
-seven,sieben,седам
-eight,acht,осам
-nine,neun,девет
-ten,zehn,десет
-grammar,Grammatik,граматика
-noun,Substantiv,именица
-verb,Verb,глагол
-adjective,Adjektiv,придев
-adverb,Adverb,прилог
-conjunction,Verbindung,свезник
-preposition,Präposition,предлог
-pronoun,Pronomen,заменица
-feminine,feminin,женски род
-masculine,maskulin,мушки род
-neuter,neutrum,средњи род
-singular,Singular,једнина
-plural,Plural,множина
-medical,medizinisch,медицина
-lawyer,Jurist,адвокат
+englisch,deutsche,serbisch,serbisch (lateinisch)
+alphabet,Alphabet,азбука,azbuka
+car,Auto,ауто,auto
+bicycle,Fahrrad,бицикл,bicikl
+fire,Feuer,ватра,vatra
+pidgeon,Pidgin,голуб,golub
+tree,Baum,дрво,drvo
+garbage,Müll,ђубре,đubre
+Europe,Europa,Европа,Evropa
+wheat,Weizen,жито,žito
+bell,Glocke,звоно,zvono
+needle,Nadel,игла,igla
+Yugoslavia,Jugoslawien,Југославија,Jugoslavija
+tower,Turm,кула,kula
+watermelon,Wassermelone,лубеница,lubenica
+chilli pepper,Chili,љута паприка,ljuta paprika
+mouse,Maus,миш,miš
+glasses,Brille,наочаре,naočare
+yum,lecker,њам,njam
+mirror,Spiegel,огледало,ogledalo
+dog,Hund,пас,pas
+barbecue,Grillgericht,роштиљ,roštilj
+chair,Stuhl,столица,stolica
+horn,Horn,труба,truba
+jar,Glas,ћуп,ćup
+question,Frage,упитник,upitnik
+soccer,Fußball,фудбал,fudbal
+bread,Brot,хлеб,hleb
+flower,Blume,цвет,cvet
+comb,Kamm,чешаљ,češalj
+sack,Sack,џак,džak
+Serbian hat,Serbisch Hut,шајкача,šajkača
+hat,Hut,шешир,šešir
+number,Nummer,број,broj
+zero,null,нула,nula
+one,eins,један,jedan
+two,zwei,два,dva
+three,drei,три,tri
+four,vier,четири,četiri
+five,fünf,пет,pet
+six,sechs,шест,šest
+seven,sieben,седам,sedam
+eight,acht,осам,osam
+nine,neun,девет,devet
+ten,zehn,десет,deset
+grammar,Grammatik,граматика,gramatika
+noun,Substantiv,именица,imenica
+verb,Verb,глагол,glagol
+adjective,Adjektiv,придев,pridev
+adverb,Adverb,прилог,prilog
+conjunction,Verbindung,свезник,sveznik
+preposition,Präposition,предлог,predlog
+pronoun,Pronomen,заменица,zamenica
+feminine,feminin,женски род,ženski rod
+masculine,maskulin,мушки род, muški rod
+neuter,neutrum,средњи род,srednji rod
+singular,Singular,једнина,jednina
+plural,Plural,множина,množina
+medical,medizinisch,медицина,medicina
+lawyer,Jurist,адвокат,advokat
