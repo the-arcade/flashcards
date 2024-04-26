@@ -1,6 +1,7 @@
-const fs = require('node:fs'),
-    readline = require('node:readline'),
-    rl = readline.createInterface({
+import fs from 'node:fs';
+import readline from 'node:readline';
+
+const rl = readline.createInterface({
         input: process.stdin,
         output: process.stdout,
     }),
@@ -65,7 +66,7 @@ function quizWord (callback) {
 //console.log('language count: ' + LANGUAGE_COUNT);
 
 
-function main (callbackCount, score) {
+function main (callbackCount = 0, score = 0) {
     if (callbackCount < TOTAL_WORDS_TO_TRY) {
         quizWord((err, quizPoint) => {
             if (err) {
@@ -82,4 +83,4 @@ function main (callbackCount, score) {
 }
 
 
-main(0, 0);
+export default main;

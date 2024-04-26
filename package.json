@@ -2,9 +2,10 @@
   "name": "flashcards",
   "version": "1.0.0",
   "description": "A simple program to quiz users on words in different languages.",
+  "type": "module",
   "main": "flashcards.js",
   "scripts": {
-    "start": "node flashcards.js",
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
