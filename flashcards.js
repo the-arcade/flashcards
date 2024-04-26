@@ -21,17 +21,17 @@ function prepareWordList (fileName) {
         });
 }
 
+/* Returns a random language index if called with nothing.
+ * If called with an existing random language index, then returns another
+ * random index of the remaining indices. That index is used for the
+ * translation language.
+ */
 function getTargetLanguageIndex (sourceRandomIndex) {
-    let targetLanguageIndex = Math.floor(Math.random() * LANGUAGE_COUNT);
-
-
-    while (targetLanguageIndex == sourceRandomIndex) {
-        //console.log('trying target language index again..');
-
-        targetLanguageIndex = Math.floor(Math.random() * LANGUAGE_COUNT);
+    if (sourceRandomIndex === undefined || sourceRandomIndex === null) {
+        return Math.floor(Math.random() * LANGUAGE_COUNT);
     }
 
-    return targetLanguageIndex;
+    return (Math.ceil(Math.random() * 2) + sourceRandomIndex) % LANGUAGE_COUNT;
 }
 
 function quizWord (callback) {
