@@ -37,7 +37,9 @@ function getLanguageIndex () {
  * Requires the total language count from the source word file.
  */
 function getTargetLanguageIndex (sourceRandomIndex) {
-    return (Math.ceil(Math.random() * 2) + sourceRandomIndex) % LANGUAGE_COUNT;
+    const remainingLanguagesLength = LANGUAGE_COUNT - 1;
+
+    return (Math.ceil(Math.random() * remainingLanguagesLength) + sourceRandomIndex) % LANGUAGE_COUNT;
 }
 
 function quizWord (rl, callback) {
