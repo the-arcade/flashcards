@@ -1,3 +1,3 @@
-import main from './flashcards.js';
+import flashcards from './flashcards.js';
 
-main();
+flashcards.main();

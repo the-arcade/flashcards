@@ -1,11 +1,8 @@
 import fs from 'node:fs';
 import readline from 'node:readline';
 
-const rl = readline.createInterface({
-        input: process.stdin,
-        output: process.stdout,
-    }),
-    WORDS_FILE_NAME = 'words.csv',
+
+const WORDS_FILE_NAME = 'words.csv',
     wordList = prepareWordList(WORDS_FILE_NAME),
     LANGUAGE_LIST = wordList.shift(),
     WORD_COUNT = wordList.length,
@@ -22,22 +19,30 @@ function prepareWordList (fileName) {
         });
 }
 
-/* Returns a random language index if called with nothing.
- * If called with an existing random language index, then returns another
- * random index of the remaining indices. That index is used for the
- * translation language.
+/* Returns a random index for the language list.
+ * The index must be within the length of the language list.
+ * Requires the total language count from the source word file.
+ */
+function getLanguageIndex () {
+    return Math.floor(Math.random() * LANGUAGE_COUNT);
+}
+
+/* Returns another random index to translate a word by picking a random
+ * number (one less than the original language length) to increment the given
+ * index.
+ *
+ * The returned index will not be the same index as the incoming parameter
+ * and must be within the length of the language list.
+ *
+ * Requires the total language count from the source word file.
  */
 function getTargetLanguageIndex (sourceRandomIndex) {
-    if (sourceRandomIndex === undefined || sourceRandomIndex === null) {
-        return Math.floor(Math.random() * LANGUAGE_COUNT);
-    }
-
     return (Math.ceil(Math.random() * 2) + sourceRandomIndex) % LANGUAGE_COUNT;
 }
 
-function quizWord (callback) {
+function quizWord (rl, callback) {
     const wordIndex = Math.floor(Math.random() * WORD_COUNT),
-        languageIndex = getTargetLanguageIndex(),
+        languageIndex = getLanguageIndex(),
         randomWordEntry = wordList[wordIndex],
         randomWord = randomWordEntry[languageIndex],
         targetIndex = getTargetLanguageIndex(languageIndex),
@@ -66,15 +71,22 @@ function quizWord (callback) {
 //console.log('language count: ' + LANGUAGE_COUNT);
 
 
-function main (callbackCount = 0, score = 0) {
+function main (rl, callbackCount = 0, score = 0) {
+    if (!rl) {
+        rl = readline.createInterface({
+            input: process.stdin,
+            output: process.stdout,
+        });
+    }
+
     if (callbackCount < TOTAL_WORDS_TO_TRY) {
-        quizWord((err, quizPoint) => {
+        quizWord(rl, (err, quizPoint) => {
             if (err) {
                 console.error('error processing quiz question:');
                 return console.error(err);
             }
 
-            main(callbackCount + 1, score + quizPoint);
+            main(rl, callbackCount + 1, score + quizPoint);
         });
     } else {
         console.log(`Final score: ${score} / ${TOTAL_WORDS_TO_TRY}`);
@@ -83,4 +95,8 @@ function main (callbackCount = 0, score = 0) {
 }
 
 
-export default main;
+export default {
+    main,
+    getLanguageIndex,
+    getTargetLanguageIndex,
+};
