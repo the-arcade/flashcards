@@ -52,10 +52,10 @@ function quizWord (callback) {
 
     rl.question(`Was ist die ${targetLanguage} Wort für: ${randomWord}?\n>`, (userEntry) => {
         if (userEntry == targetWord) {
-            console.log('Richtig.');
+            console.log('Richtig.\n');
             return callback(null, 1);
         } else {
-            console.log('Unrichtig.');
+            console.log('Unrichtig.\n');
             return callback(null, 0);
         }
     });
