@@ -3,7 +3,7 @@ alphabet,Alphabet,азбука,azbuka
 car,Auto,ауто,auto
 bicycle,Fahrrad,бицикл,bicikl
 fire,Feuer,ватра,vatra
-pidgeon,Pidgin,голуб,golub
+pigeon,Taube,голуб,golub
 tree,Baum,дрво,drvo
 garbage,Müll,ђубре,đubre
 Europe,Europa,Европа,Evropa
@@ -53,7 +53,7 @@ preposition,Präposition,предлог,predlog
 pronoun,Pronomen,заменица,zamenica
 feminine,feminin,женски род,ženski rod
 masculine,maskulin,мушки род, muški rod
-neuter,neutrum,средњи род,srednji rod
+neuter,neutral,средњи род,srednji rod
 singular,Singular,једнина,jednina
 plural,Plural,множина,množina
 medical,medizinisch,медицина,medicina
