@@ -3,11 +3,13 @@ import readline from 'node:readline';
 
 
 const WORDS_FILE_NAME = 'words.csv',
-    wordList = prepareWordList(WORDS_FILE_NAME),
-    LANGUAGE_LIST = wordList.shift(),
     TOTAL_WORDS_TO_TRY = 10;
 
 
+/* Function that receives a file name and reads that file from disk.
+ * The data is split by line into a list, and each element of the list is split
+ * on commas to get a sub list of words.
+ */
 function prepareWordList (fileName) {
     return fs
         .readFileSync(fileName, 'utf8')
@@ -40,20 +42,15 @@ function getTargetLanguageIndex (languageCount, initialRandomIndex) {
     return (Math.ceil(Math.random() * remainingLanguagesLength) + initialRandomIndex) % languageCount;
 }
 
-function quizWord (rl, callback) {
+function quizWord (rl, wordList, languageList, callback) {
     const wordIndex = getRandomIndex(wordList.length),
         randomWordEntry = wordList[wordIndex],
-        languageIndex = getRandomIndex(LANGUAGE_LIST.length),
+        languageIndex = getRandomIndex(languageList.length),
         randomWord = randomWordEntry[languageIndex],
-        targetIndex = getTargetLanguageIndex(LANGUAGE_LIST.length, languageIndex),
-        targetLanguage = LANGUAGE_LIST[targetIndex],
+        targetIndex = getTargetLanguageIndex(languageList.length, languageIndex),
+        targetLanguage = languageList[targetIndex],
         targetWord = wordList[wordIndex][targetIndex];
 
-
-    //console.log('word index: ' + wordIndex);
-    //console.log('language index: ' + languageIndex);
-
-    //console.log(wordList[wordIndex]);
 
     rl.question(`Was ist die ${targetLanguage} Wort für: ${randomWord}?\n>`, (userEntry) => {
         if (userEntry == targetWord) {
@@ -67,22 +64,24 @@ function quizWord (rl, callback) {
 }
 
 
-function main (rl, callbackCount = 0, score = 0) {
+function main (rl, wordList, languageList, callbackCount = 0, score = 0) {
     if (!rl) {
         rl = readline.createInterface({
             input: process.stdin,
             output: process.stdout,
         });
+        wordList = prepareWordList(WORDS_FILE_NAME);
+        languageList = wordList.shift();
     }
 
     if (callbackCount < TOTAL_WORDS_TO_TRY) {
-        quizWord(rl, (err, quizPoint) => {
+        quizWord(rl, wordList, languageList, (err, quizPoint) => {
             if (err) {
                 console.error('error processing quiz question:');
                 return console.error(err);
             }
 
-            main(rl, callbackCount + 1, score + quizPoint);
+            main(rl, wordList, languageList, callbackCount + 1, score + quizPoint);
         });
     } else {
         console.log(`Final score: ${score} / ${TOTAL_WORDS_TO_TRY}`);
@@ -93,6 +92,7 @@ function main (rl, callbackCount = 0, score = 0) {
 
 export default {
     main,
+    prepareWordList,
     getRandomIndex,
     getTargetLanguageIndex,
 };
