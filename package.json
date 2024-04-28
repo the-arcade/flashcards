@@ -6,7 +6,8 @@
   "main": "flashcards.js",
   "scripts": {
     "start": "node index.js",
-    "test": "jest --testRegex tests/*.js"
+    "test": "jest --testRegex tests/*.js",
+    "watch-test": "nodemon --watch ./flashcards.js --watch ./tests/ --ext js --exec 'npm test'"
   },
   "jest": {
     "transform": {

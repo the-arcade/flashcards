@@ -6,7 +6,6 @@ const WORDS_FILE_NAME = 'words.csv',
     wordList = prepareWordList(WORDS_FILE_NAME),
     LANGUAGE_LIST = wordList.shift(),
     WORD_COUNT = wordList.length,
-    LANGUAGE_COUNT = LANGUAGE_LIST.length,
     TOTAL_WORDS_TO_TRY = 10;
 
 
@@ -23,8 +22,8 @@ function prepareWordList (fileName) {
  * The index must be within the length of the language list.
  * Requires the total language count from the source word file.
  */
-function getLanguageIndex () {
-    return Math.floor(Math.random() * LANGUAGE_COUNT);
+function getLanguageIndex (languageCount) {
+    return Math.floor(Math.random() * languageCount);
 }
 
 /* Returns another random index to translate a word by picking a random
@@ -36,18 +35,18 @@ function getLanguageIndex () {
  *
  * Requires the total language count from the source word file.
  */
-function getTargetLanguageIndex (sourceRandomIndex) {
-    const remainingLanguagesLength = LANGUAGE_COUNT - 1;
+function getTargetLanguageIndex (languageCount, initialRandomIndex) {
+    const remainingLanguagesLength = languageCount - 1;
 
-    return (Math.ceil(Math.random() * remainingLanguagesLength) + sourceRandomIndex) % LANGUAGE_COUNT;
+    return (Math.ceil(Math.random() * remainingLanguagesLength) + initialRandomIndex) % languageCount;
 }
 
 function quizWord (rl, callback) {
     const wordIndex = Math.floor(Math.random() * WORD_COUNT),
-        languageIndex = getLanguageIndex(),
+        languageIndex = getLanguageIndex(LANGUAGE_LIST.length),
         randomWordEntry = wordList[wordIndex],
         randomWord = randomWordEntry[languageIndex],
-        targetIndex = getTargetLanguageIndex(languageIndex),
+        targetIndex = getTargetLanguageIndex(LANGUAGE_LIST.length, languageIndex),
         targetLanguage = LANGUAGE_LIST[targetIndex],
         targetWord = wordList[wordIndex][targetIndex];
 
@@ -67,10 +66,6 @@ function quizWord (rl, callback) {
         }
     });
 }
-
-
-//console.log('word count: ' + WORD_COUNT);
-//console.log('language count: ' + LANGUAGE_COUNT);
 
 
 function main (rl, callbackCount = 0, score = 0) {
