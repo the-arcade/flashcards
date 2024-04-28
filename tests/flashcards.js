@@ -1,9 +1,9 @@
 import flashcards from '../flashcards.js';
 
 
-test('getLanguageIndex() returns a valid index number', () => {
+test('getRandomIndex() returns a valid index number', () => {
     const languageListLength = 2,
-        randomIndex = flashcards.getLanguageIndex(languageListLength);
+        randomIndex = flashcards.getRandomIndex(languageListLength);
 
     expect(Number.isInteger(randomIndex)).toBe(true);
     expect(randomIndex).toBeGreaterThanOrEqual(0);

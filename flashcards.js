@@ -5,7 +5,6 @@ import readline from 'node:readline';
 const WORDS_FILE_NAME = 'words.csv',
     wordList = prepareWordList(WORDS_FILE_NAME),
     LANGUAGE_LIST = wordList.shift(),
-    WORD_COUNT = wordList.length,
     TOTAL_WORDS_TO_TRY = 10;
 
 
@@ -22,7 +21,7 @@ function prepareWordList (fileName) {
  * The index must be within the length of the language list.
  * Requires the total language count from the source word file.
  */
-function getLanguageIndex (languageCount) {
+function getRandomIndex (languageCount) {
     return Math.floor(Math.random() * languageCount);
 }
 
@@ -42,9 +41,9 @@ function getTargetLanguageIndex (languageCount, initialRandomIndex) {
 }
 
 function quizWord (rl, callback) {
-    const wordIndex = Math.floor(Math.random() * WORD_COUNT),
-        languageIndex = getLanguageIndex(LANGUAGE_LIST.length),
+    const wordIndex = getRandomIndex(wordList.length),
         randomWordEntry = wordList[wordIndex],
+        languageIndex = getRandomIndex(LANGUAGE_LIST.length),
         randomWord = randomWordEntry[languageIndex],
         targetIndex = getTargetLanguageIndex(LANGUAGE_LIST.length, languageIndex),
         targetLanguage = LANGUAGE_LIST[targetIndex],
@@ -94,6 +93,6 @@ function main (rl, callbackCount = 0, score = 0) {
 
 export default {
     main,
-    getLanguageIndex,
+    getRandomIndex,
     getTargetLanguageIndex,
 };
