@@ -10,6 +10,15 @@
     "watch-test": "nodemon --watch ./flashcards.js --watch ./tests/ --ext js --exec 'npm test'"
   },
   "jest": {
+    "collectCoverage": true,
+    "coverageThreshold": {
+        "global": {
+            "branches": 100,
+            "functions": 100,
+            "lines": 100,
+            "statements": -1
+        }
+    },
     "transform": {
       "^.+\\.[t|j]sx?$": "babel-jest"
     }
