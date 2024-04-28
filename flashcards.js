@@ -14,7 +14,9 @@ function prepareWordList (fileName) {
     return fs
         .readFileSync(fileName, 'utf8')
         .split('\n')
-        .map((singleWordEntry) => {
+        .filter((singleWordEntry) => {
+            return singleWordEntry !== '';
+        }).map((singleWordEntry) => {
             return singleWordEntry.split(',');
         });
 }

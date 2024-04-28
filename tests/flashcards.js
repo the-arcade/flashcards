@@ -42,7 +42,8 @@ test('prepareWordList() returns a list of translation lists', () => {
     const expectedFileName = 'filename.csv',
         rawCsvData = `language 1,language 2
 word 1,word 1
-word 2,word 2`;
+word 2,word 2
+`;
 
     fs.readFileSync.mockImplementation((fileName, encoding) => {
         expect(fileName).toBe(expectedFileName);
