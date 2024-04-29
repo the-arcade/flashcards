@@ -21,12 +21,12 @@ function prepareWordList (fileName) {
         });
 }
 
-/* Returns a random index for the language list.
- * The index must be within the length of the language list.
- * Requires the total language count from the source word file.
+/* Returns a random index for the word or language list.
+ * The index must be within the length of the list.
+ * Requires the total length of the list to calculate a random index.
  */
-function getRandomIndex (languageCount) {
-    return Math.floor(Math.random() * languageCount);
+function getRandomIndex (listLength) {
+    return Math.floor(Math.random() * listLength);
 }
 
 /* Returns another random index to translate a word by picking a random
