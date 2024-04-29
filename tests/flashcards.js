@@ -59,3 +59,15 @@ word 2,word 2
         ['word 2', 'word 2'],
     ]);
 });
+
+
+test('getRandomWordEntry() returns a random word entry, given a word entry list', () => {
+    const wordEntryList = [
+        ['word 1', 'word 1'],
+    ],
+        randomWordEntry = flashcards.getRandomWordEntry(wordEntryList);
+
+    expect(randomWordEntry).toEqual([
+        'word 1', 'word 1',
+    ]);
+});

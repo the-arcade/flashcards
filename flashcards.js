@@ -44,18 +44,22 @@ function getTargetLanguageIndex (languageCount, initialRandomIndex) {
     return (Math.ceil(Math.random() * remainingLanguagesLength) + initialRandomIndex) % languageCount;
 }
 
+
+function getRandomWordEntry (wordList) {
+    const wordIndex = getRandomIndex(wordList.length);
+
+    return wordList[wordIndex];
+}
+
+
 function quizWord (rl, wordList, languageList, callback) {
-    const wordIndex = getRandomIndex(wordList.length),
-        randomWordEntry = wordList[wordIndex],
+    const randomWordEntry = getRandomWordEntry(wordList),
         languageIndex = getRandomIndex(languageList.length),
-        randomWord = randomWordEntry[languageIndex],
-        targetIndex = getTargetLanguageIndex(languageList.length, languageIndex),
-        targetLanguage = languageList[targetIndex],
-        targetWord = wordList[wordIndex][targetIndex];
+        targetIndex = getTargetLanguageIndex(languageList.length, languageIndex);
 
 
-    rl.question(`Was ist die ${targetLanguage} Wort für: ${randomWord}?\n>`, (userEntry) => {
-        if (userEntry == targetWord) {
+    rl.question(`Was ist die ${languageList[targetIndex]} Wort für: ${randomWordEntry[languageIndex]}?\n>`, (userEntry) => {
+        if (userEntry == randomWordEntry[targetIndex]) {
             console.log('Richtig.\n');
             return callback(null, 1);
         } else {
@@ -97,4 +101,5 @@ export default {
     prepareWordList,
     getRandomIndex,
     getTargetLanguageIndex,
+    getRandomWordEntry,
 };
