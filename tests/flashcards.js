@@ -71,3 +71,57 @@ test('getRandomWordEntry() returns a random word entry, given a word entry list'
         'word 1', 'word 1',
     ]);
 });
+
+
+test('promptUser() prompts the user for a word and validates that the input is correct', (done) => {
+    const randomWord = 'Hund',
+        targetLanguage = 'English',
+        expectedWord = 'dog',
+        userEnteredWord = 'dog',
+        expectedPromptToUser = `Was ist die ${targetLanguage} Wort für: ${randomWord}?\n>`,
+        expectedResponseToUser = 'Richtig.\n',
+        mockReadline = {
+            question: jest.fn().mockImplementationOnce((textPrompt, readlineCallback) => {
+                expect(textPrompt).toBe(expectedPromptToUser);
+                return readlineCallback(userEnteredWord);
+            }),
+        },
+        mockConsoleLog = jest.fn().mockImplementationOnce((message) => {
+            expect(message).toBe(expectedResponseToUser);
+            return;
+        }),
+        callback = (err, point) => {
+            expect(point).toBe(1);
+            return done(err);
+        };
+
+    console.log = mockConsoleLog;
+
+    flashcards.promptUser(mockReadline, randomWord, targetLanguage, expectedWord, callback);
+});
+
+
+test('promptUser() prompts the user for a word and reports an incorrect answer', (done) => {
+    const randomWord = 'Hund',
+        targetLanguage = 'English',
+        expectedWord = 'dog',
+        userEnteredWord = 'cat',
+        expectedResponseToUser = 'Unrichtig.\n',
+        mockReadline = {
+            question: jest.fn().mockImplementationOnce((textPrompt, readlineCallback) => {
+                return readlineCallback(userEnteredWord);
+            }),
+        },
+        mockConsoleLog = jest.fn().mockImplementationOnce((message) => {
+            expect(message).toBe(expectedResponseToUser);
+            return;
+        }),
+        callback = (err, point) => {
+            expect(point).toBe(0);
+            return done(err);
+        };
+
+    console.log = mockConsoleLog;
+
+    flashcards.promptUser(mockReadline, randomWord, targetLanguage, expectedWord, callback);
+});

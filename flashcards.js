@@ -52,14 +52,9 @@ function getRandomWordEntry (wordList) {
 }
 
 
-function quizWord (rl, wordList, languageList, callback) {
-    const randomWordEntry = getRandomWordEntry(wordList),
-        languageIndex = getRandomIndex(languageList.length),
-        targetIndex = getTargetLanguageIndex(languageList.length, languageIndex);
-
-
-    rl.question(`Was ist die ${languageList[targetIndex]} Wort für: ${randomWordEntry[languageIndex]}?\n>`, (userEntry) => {
-        if (userEntry == randomWordEntry[targetIndex]) {
+function promptUser (rl, randomWord, targetLanguage, expectedWord, callback) {
+    return rl.question(`Was ist die ${targetLanguage} Wort für: ${randomWord}?\n>`, (userEntry) => {
+        if (userEntry == expectedWord) {
             console.log('Richtig.\n');
             return callback(null, 1);
         } else {
@@ -67,6 +62,16 @@ function quizWord (rl, wordList, languageList, callback) {
             return callback(null, 0);
         }
     });
+}
+
+
+function quizWord (rl, wordList, languageList, callback) {
+    const randomWordEntry = getRandomWordEntry(wordList),
+        languageIndex = getRandomIndex(languageList.length),
+        targetLanguageIndex = getTargetLanguageIndex(languageList.length, languageIndex);
+
+
+    return promptUser(rl, randomWordEntry[languageIndex], languageList[targetLanguageIndex], randomWordEntry[targetLanguageIndex], callback);
 }
 
 
@@ -102,4 +107,5 @@ export default {
     getRandomIndex,
     getTargetLanguageIndex,
     getRandomWordEntry,
+    promptUser,
 };
